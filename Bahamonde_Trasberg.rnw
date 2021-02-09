@@ -1,0 +1,687 @@
+\documentclass[onesided]{article}
+\usepackage[T1]{fontenc}
+\linespread{1.5} % Line spacing - Palatino needs more space between lines
+\usepackage{microtype} % Slightly tweak font spacing for aesthetics
+
+\usepackage[hmarginratio=1:1,columnsep=20pt]{geometry} % Document margins
+%\usepackage{multicol} % Used for the two-column layout of the document
+\usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
+\usepackage{booktabs} % Horizontal rules in tables
+\usepackage{float} % Required for tables and figures in the multi-column environment - they need to be placed in specific locations with the [H] (e.g. \begin{table}[H])
+
+\usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
+\usepackage{paralist} % Used for the compactitem environment which makes bullet points with less space between them
+
+% to ignore texts: good for thank messages and paper submissions.
+      % \fbox{\phantom{This text will be invisible too, but a box will be printed arround it.}}
+
+\usepackage{abstract} % Allows abstract customization
+\renewcommand{\abstractnamefont}{\normalfont\bfseries} % Set the "Abstract" text to bold
+%\renewcommand{\abstracttextfont}{\normalfont\small\itshape} % Set the abstract itself to small italic text
+
+\usepackage[]{titlesec} % Allows customization of titles
+\renewcommand\thesection{\Roman{section}} % Roman numerals for the sections
+\renewcommand\thesubsection{\Roman{subsection}} % Roman numerals for subsections
+\titleformat{\section}[block]{\large\scshape\centering}{\thesection.}{1em}{} % Change the look of the section titles
+\titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{} % Change the look of the section titles
+
+\usepackage{fancybox, fancyvrb, calc}
+\usepackage[svgnames]{xcolor}
+\usepackage{epigraph}
+
+\usepackage{longtable}
+\usepackage{pdflscape}
+\usepackage{graphics}
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{rotating}
+\usepackage{paracol}
+\usepackage{textcomp}
+\usepackage[export]{adjustbox}
+\usepackage{afterpage}
+\usepackage{filecontents}
+\usepackage{color}
+\usepackage{latexsym}
+\usepackage{lscape}       %\begin{landscape} and \end{landscape}
+\usepackage{wasysym}
+\usepackage{dashrule}
+
+\usepackage{framed}
+\usepackage{tree-dvips}
+\usepackage{pgffor}
+\usepackage[]{authblk}
+\usepackage{setspace}
+\usepackage{array}
+\usepackage[latin1]{inputenc}
+\usepackage{hyperref}     %desactivar para link rojos
+\usepackage{graphicx}
+\usepackage{dcolumn} % for R tables
+\usepackage{multirow} % For multirow in tables
+\usepackage{pifont}
+\usepackage{listings}
+
+
+
+
+% hypothesis / theorem package begin
+\usepackage{amsthm}
+\usepackage{thmtools}
+\declaretheoremstyle[
+spaceabove=6pt, spacebelow=6pt,
+headfont=\normalfont\bfseries,
+notefont=\mdseries, notebraces={(}{)},
+bodyfont=\normalfont,
+postheadspace=0.6em,
+headpunct=:
+]{mystyle}
+\declaretheorem[style=mystyle, name=Hypothesis, preheadhook={\renewcommand{\thehyp}{H\textsubscript{\arabic{hyp}}}}]{hyp}
+
+\usepackage{cleveref}
+\crefname{hyp}{hypothesis}{hypotheses}
+\Crefname{hyp}{Hypothesis}{Hypotheses}
+% hypothesis / theorem package end
+
+
+%----------------------------------------------------------------------------------------
+% Other ADDS-ON
+%----------------------------------------------------------------------------------------
+
+% independence symbol \independent
+\newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
+\def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
+
+
+
+
+
+
+
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=false,          % non-Latin characters in Acrobat's bookmarks
+    pdftoolbar=true,        % show Acrobat's toolbar?
+    pdfmenubar=true,        % show Acrobat's menu?
+    pdffitwindow=true,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={My title},    % title
+    pdfauthor={Author},     % author
+    pdfsubject={Subject},   % subject of the document
+    pdfcreator={Creator},   % creator of the document
+    pdfproducer={Producer}, % producer of the document
+    pdfkeywords={keyword1} {key2} {key3}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=Maroon,          % color of internal links (change box color with linkbordercolor)
+    citecolor=Maroon,        % color of links to bibliography
+    filecolor=Maroon,      % color of file links
+    urlcolor=Maroon           % color of external links
+}
+
+%\usepackage[nodayofweek,level]{datetime} % to have date within text
+
+\newcommand{\LETT}[3][]{\lettrine[lines=4,loversize=.2,#1]{\smash{#2}}{#3}} % letrine customization
+
+
+
+% comments on margin
+  % Select what to do with todonotes: 
+  % \usepackage[disable]{todonotes} % notes not showed
+  \usepackage[draft]{todonotes}   % notes showed
+  % usage: \todo{This is a note at margin}
+
+\usepackage{cooltooltips}
+
+%%% bib begin
+\usepackage[american]{babel}
+\usepackage{csquotes}
+\usepackage[backend=biber,style=authoryear,dashed=false,doi=false,isbn=false,url=false,arxiv=false]{biblatex}
+%\DeclareLanguageMapping{american}{american-apa}
+\addbibresource{Bahamonde_Trasberg.bib} 
+% USAGES
+%% use \textcite to cite normal
+%% \parencite to cite in parentheses
+%% \footcite to cite in footnote
+%% the default can be modified in autocite=FOO, footnote, for ex. 
+%%% bib end
+
+
+% DOCUMENT ID
+
+
+
+% TITLE SECTION
+
+\title{\vspace{-15mm}\fontsize{18pt}{7pt}\selectfont\textbf{\input{title.txt}\unskip}} % Article title
+
+
+\author[1]{
+
+\textsc{H\'ector Bahamonde}
+\thanks{\href{mailto:hector.bahamonde@uoh.cl}{hector.bahamonde@uoh.cl}; \href{http://www.hectorbahamonde.com}{\texttt{www.HectorBahamonde.com}}.}}
+
+
+
+\author[2]{
+
+\textsc{Mart Trasberg}
+\thanks{\href{mailto:tmart@tulane.edu}{tmart@tulane.edu}; 
+\href{https://www2.tulane.edu/liberal-arts/political-science/mart-etrasberg.cfm}{\texttt{political-science/mart-etrasberg}}. \\
+We both thank Robert Kaufman, Hillel Soifer, Victor Menaldo, and participants of the ``XVI Conference'' of \emph{The Italian Association for the History of Economic Thought} (AISPE) in Bologna.}}
+
+
+\affil[1]{Assistant Professor, O$'$Higgins University (Chile)}
+\affil[2]{PhD Candidate, Department of Political Science, Tulane University}
+
+
+\date{\today}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+%\SweaveOpts{concordance=TRUE}
+% Sweave2knitr("Bahamonde_Trasberg.rnw")
+\pagenumbering{gobble} 
+
+
+\setcounter{hyp}{0} % sets hypothesis counter to 1
+
+\maketitle % Insert title
+
+
+%----------------------------------------------------------------------------------------
+% ABSTRACT
+%----------------------------------------------------------------------------------------
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% loading knitr package
+<<setup, include=FALSE, cache=FALSE>>=
+if (!require("pacman")) install.packages("pacman"); library(pacman)
+p_load(knitr)
+
+options(scipen = 99999999999)
+@
+
+
+<<echo=FALSE, cache= F, warning = FALSE, message = F>>=
+read_chunk('../Inequality_State_Capacities/Bahamonde_Trasberg.R')
+
+@
+
+
+% loadings:data // loading data
+<<loadings:data, echo=FALSE, comment=NA, warning=FALSE, message=FALSE, include = FALSE, cache=FALSE, eval=TRUE>>=
+
+@
+
+
+% main:models // running the models, and storing them
+<<main:models, echo=FALSE, comment=NA, warning=FALSE, message=FALSE, include = FALSE, cache=FALSE, eval=TRUE>>=
+
+@
+
+
+% long:run:effect:d
+<<long:run:effect:d, echo=FALSE, comment=NA, warning=FALSE, message=FALSE, include = FALSE, cache=FALSE, eval=TRUE>>=
+
+@
+
+% long:run:effect:p1
+<<long:run:effect:p1, echo=FALSE, comment=NA, warning=FALSE, message=FALSE, include = FALSE, cache=FALSE, eval=TRUE>>=
+
+@
+
+<<interaction:model:1:plot:note, echo=FALSE, comment=NA, warning=FALSE, message=FALSE, include = FALSE, cache=FALSE, eval=TRUE>>=
+
+@
+
+
+<<interaction:model:15:plot:note, echo=FALSE, comment=NA, warning=FALSE, message=FALSE, include = FALSE, cache=FALSE, eval=TRUE>>=
+
+@
+
+
+
+% robustness:models // running the models, and storing them
+<<robustness:models, echo=FALSE, comment=NA, warning=FALSE, message=FALSE, include = FALSE, cache=FALSE, eval=TRUE>>=
+
+@
+
+% mechanisms:models // running the models, and storing them
+<<mechanisms:models, echo=FALSE, comment=NA, warning=FALSE, message=FALSE, include = FALSE, cache=FALSE, eval=TRUE>>=
+
+@
+
+
+% south:africa:plot:data
+<<south:africa:plot:data, echo=FALSE, comment=NA, warning=FALSE, message=FALSE, include = FALSE, cache=FALSE, eval=TRUE>>=
+
+@
+
+% end knitr stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{abstract}
+\input{abstract.txt}\unskip
+\end{abstract}
+
+\hspace*{1.3cm}{\bf Please consider downloading the last version of the paper} \href{https://github.com/hbahamonde/Inequality_State_Capacities/raw/master/Bahamonde_Trasberg.pdf}{\texttt{{\color{red}here}}}.
+
+\providecommand{\keywords}[1]{\textbf{\textit{Keywords---}} #1} % keywords.  
+\keywords{inequality; state-capacity; foreign direct investment; democracy.}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CONTENT (write the paper below)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\newpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\section{INTRODUCTION}
+
+
+
+% ok
+Median voter and selectorate theories posit electoral democracy as fundamentally equalizing \parencite{MeltzerandRichard1981,Boix2003,AcemogluandRobinson2006,BuenodeMesquitaetal2003}. However, these ``redistributive'' propositions have not received support in recent, more empirically minded literature \parencite{Timmons2010,Remington2011,Acemogluetal2015,Wong2016,Scheve2017}. The critics of redistributive effects of democratic institutions have noted that deficiencies in mechanisms of responsiveness and accountability, clientelism, interest group capture, and institutional legacies of authoritarianism may pose serious obstacles to equalization policies under democratic rule \parencite{AlbertusandMenaldo2018}. It has also been suggested that such effects might be heavily context-dependent \parencite{Soifer2013a}.
+
+% ok
+By contrast, fewer scholars have posited that democracy may, instead, causally lead to a more unequal income distribution. For example, democratic checks and balances might increase inequality by strengthening the influence of economic elites in policy-making \parencite{Remington2011,Acemogluetal2015}, or by blocking redistributive policies through institutional channels, such as legislatures, courts, and bureaucracy \parencite{Albertus2015,Wong2016,Albertus2016}. In some areas, such as land reform, autocracies have achieved greater success in pro-poor redistribution \parencite{Albertus2015}. Other, more distant literature, has documented that democracy may intensify distributive conflicts \parencite{Huntington1968,Kohli2004,CollierandRohmer2008}, or reinforce clientelist modes of interest intermediation, which may be associated with dismal socio-economic outcomes, including increasing inequality \parencite{KeeferandVlaicu2008,Weitz-Shapiro2014}. 
+
+
+% ok
+Looking at context-conditionality could be a new way forward to clarify both the theoretical and empirical relationship between democracy and inequality. In this paper, we explore whether democracy's impact on inequality is conditioned by state capacity. It could be expected that pre-existing state capacity, in the form of functioning bureaucracies and territorial penetration, is necessary for redistributive policies under democratic rule \parencite{Ziblatt2008}. For example, \textcite[]{Soifer2013a}, focused on the effect of inequality on democratization and, argued that inequality-induced redistributive conflict only ensues in the context of considerable infrastructural power, which allows the implementation of redistributive taxation and transfer policies. 
+
+
+% ok
+This study found no empirical support for these intuitive claims. Using error correction models with data from $\Sexpr{complete.n.country}$ industrial and developing countries from $\Sexpr{complete.n.years.min}$-$\Sexpr{complete.n.years.max}$, along with a novel measure of state infrastructural power based on cumulative census administration data, it was shown that democratic rule combined with high state capacity leads to increasing income inequality over time. This study's theoretical argument centers on the idea that democracy and high state capacity provide the context of optimal property rights and contract security, which favors a high-quality investment climate through lower risk. Democracy offers protection of private property rights from arbitrary government involvement, mostly benefiting economic elites and the business sector. High levels of state infrastructural power, in turn, provide the preconditions for the functioning of a capitalist market economy through supporting legal and administrative institutions, which enhances private contracting among economic agents \parencite{Williamson1985,Chaudry1993}. When property rights are protected from arbitrary government involvement and state institutions provide a well-oiled administration and legal system throughout national territory, the quality of the investment climate is likely to reach to its zenith.
+
+% ok
+This study argues that the high-quality investment environment backed by democratic and high-capacity state institutions increases income inequality through two transmission channels: the higher inflows of foreign direct investment (FDI) and the development of sophisticated financial sectors. Property rights and contract security, backed by high-capacity democratic institutions, are both major determinants of FDI inflows and financial development in the existing literature. Both of these variables have been associated in the recent literature with increasing inequality.\footnote{See \textcite{Jaumotte:2013aa} for an overview on that literature.} FDI inflows increase the demand for skilled workers, leading to a larger wage gap between skilled and unskilled works, which is likely to increase labor income inequality \parencite{Feenstra:1997aa,Jaumotte:2013aa}. In addition, multinational corporations and transnational elites become more relevant actors in national politics with increasing FDI flows, likely exerting downward pressures to labor protecting regulations, redistributive taxation, and transfers. We also suggest that financial development is likely to happen in an ``intensive margin,'' benefiting the economic fortunes of those who already enjoy access to capital \parencite{Greenwood1990}. For example, highly developed financial instruments are likely to provide higher rates of returns to pre-existing levels of capital, providing a basis for capital concentration \textcite{Piketty:2014aa}.  
+
+% ok
+The theory and empirical approach here focus on the change in within-country inequality since 1970, a period which has largely coincided with an increase in inequality for many, if not most, high- and middle-income countries. Despite the fact that high-capacity nations with the longest democratic experience are likely to have the lowest levels of inequality and the most far-reaching taxation and transfers systems, the growth of these institutions occurred largely before the 1970s. We remain agnostic on the reason behind both the development of these institutions and the dynamics of change in inequality before the 1970s,\footnote{Recent literature has vigorously explored the dynamics between historical change in inequality within nations making use of new historical datasets \parencite{Piketty:2014aa,ScheveandStasavage2012}.} as well as its relationship with state capacity and democratic rule.\footnote{Recent works employing historical datasets stemming back from the early 19th century haves casted serious doubts on the idea that democratic rule expanded progressive income taxation \parencite{ScheveandStasavage2012} or education spending \parencite{Pagalyan:2018aa}.} In other words, this work provides no arguments about the \emph{levels} of inequality, only the determinants of the within-country change over time since 1970. 
+
+The crucial factors of our theory that increase inequality---the FDI and financial development---has spread since the 1970s, when the current wave of economic globalization related to cross-border capital flows and financial growth accelerated. Given the previous literature, it is plausible to believe that the within-country variation in these two variables is associated with within-country inequality changes. To be clear, our argument does not imply that nations that lack strong property rights protection and contract security would have lower inequality, rather, they are less likely to experience the trend of increasing inequality in the post-1970 period, given their limited capacity to attract FDI and develop sophisticated financial sectors. Our main testable prediction concerning the post-1970 period, therefore, is that inequality increases in the contexts of when democratic rule and high levels of state capacity coincide.
+
+% ok
+This paper makes several contributions to the existing literature. First, we contribute to the understanding of institutional underpinnings of increasing within-country inequality in the last four decades in many parts of the world.\footnote{There have been major exceptions to that trend, especially in Latin America, where inequality has declined since the end of 1990s, albeit very slowly \parencite{Lopez-Calva:2010aa}.} The trend of increasing income inequality has been amply documented \parencite{Piketty:2014aa,Atkinson:2015aa}, however, we still lack a systematic understanding of the determinants of the relative salience of this trend within different countries. Second, we contribute to the broader literature on regime type and redistribution. In contrast with the previous literature, we focus less on the political determinants of redistributive capacity, such as taxation and redistributive transfers,\footnote{See \parencite{AlbertusandMenaldo2018,Pagalyan:2018aa,ScheveandStasavage2012} for recent contributions to that literature.} and more on the changes in labor and capital markets, determining income distribution through the wage shares of high- and low-skilled workers and the degree of capital income concentration to the top. These changes are directly shaped by financial development and FDI flows, which operate as causal mechanisms in our theory.  
+% HERE
+
+% ok
+The paper is structured as follows. In \autoref{lit:review} we present the literature review. In \autoref{argument}, we present our theoretical argument on the interactive relationship between democratic rule, state capacity and inequality. Then, in \autoref{vars:and:measurement}, we address issues of the measurement of inequality, democracy, and state infrastructural power. We also explain and justify our control variables. In \autoref{time:series:models} we present our empirical design, results from error correction models, and the corresponding robustness checks. Our empirical analysis demonstrates both the interactive effect of democracy and state infrastructural power on income inequality and tests the transmission channels behind this relationship: the combined effects of state capacity and regime type on investor confidence, financial development, and inequality, as well as the effects of the latter variables on income distribution. In \autoref{conclusion} we conclude.
+
+\section{LITERATURE REVIEW\label{lit:review}}
+
+
+% ok
+Democratic institutions have been conceptualized as a major source of responsiveness and accountability in the political economy literature, providing electoral incentives to redistribute income. Leaders in democratic nations need widespread support to achieve and sustain power, and are, therefore, more likely to move beyond their narrow set of personal interests by appealing to a wider public through public policies \parencite{MeltzerandRichard1981}. Compared to authoritarian polities, widespread enfranchisement in democracies is likely to result in higher public goods provision, which may help the poor to benefit from economic growth via investments in human capital \parencite{BaumandLake2003,Lindert2004,Morgan2013}. These policies are expected to produce more equal income distribution over time. According to \textcite{BuenodeMesquitaetal2003}, authoritarian rulers find it more efficient to provide targeted private goods to their ``winning coalition,'' a narrower group of supporters, which often excludes the poor. In contrast, rulers in democratic systems have to satisfy larger constituencies and find it cheaper to rely on broadly distributed and equalizing public goods.
+
+
+
+% ok
+Democracy's equalizing effects are also conditioned on and work through the political power of organized groups. Electoral institutions allow underprivileged groups to enter the political realm via political parties, unions, and social mobilization \parencite{Korpi1983,Esping-Andersen1990,HuberandStephens2012}. According to power resource arguments, political organization and collective action capacity are conditioning factors in the democracy-redistribution nexus. \textcite{Rodrik1999} found that democracies have higher real wages and labor share in national income, attributing these to a greater freedom of labor association. Despite these plausible theoretical mechanisms, empirical evidence has not offered solid support for inequality-reducing effects of democracy. Several empirical studies incorporating various regions of the developing world find that democracy does not induce lower income inequality \parencite{GradsteinandMilanovic2004,Timmons2010,Acemogluetal2015,Wong2016}, more progressive taxation {\color{red}(Scheve and Stasavage 2014)} or pro-poor social policies \parencite{MulliganGilSala-i-Martin2004,Ross2006,Pagalyan:2018aa}. The causes of this ``democratic unresponsiveness'' have constituted a major puzzle for the literature. At the same time, some democracies might be more redistributive than others, and the focus on the social and institutional contexts in which democracies operate could be a new way forward for fruitful theorizing. 
+
+% OK
+In this paper, we concentrate on the question of whether democracy's effect on inequality is conditioned on state capacity. In particular, we study the conditional effect of state infrastructural power, which has received important recent attention as an explanatory variable in determining development outcomes \parencite{Knutsen2013,Hanson2015}. Infrastructural power refers to the institutional capacity of the state to ``penetrate its territories and logistically implement decisions'' \parencite[113]{Mann1984a}. The quality, or ``Weberiness,'' of state bureaucracy---often used as measure of state capacity---is necessary, however, is by no means sufficient for high infrastructural power. As \textcite[231-232]{Soifer2008b} argued, infrastructural power is conceptually distinct from Weberian bureaucratic professionalism, in that it is focused on the state's ability to enforce and implement policies, rather than on the autonomy or quality of the bureaucracy itself. Bureaucratic professionalism contributes to infrastructural power, yet must be complemented by the ability of state agents to implement policies and regulations throughout the national territory.
+
+% OK
+The previous literature has hinted that redistributive policies are more likely in the context where both the political-electoral incentives stemming from regime characteristics and the state capacity to redistribute exist. In low capacity states, democratization should not matter for redistributive outcomes given their inability to collect taxes and implement social policy. Revenue extraction and policy implementation---both crucial for income redistribution---are dependent on the state's ability to penetrate its territory and implement decisions \parencite{Ziblatt2008}. In states with lower state capacity, elites are able to escape taxation, lowering the state ability to provide public goods and transfers. For example, income taxation requires identifying individual incomes within both the national territory and offshore, assessing value and collecting payments. It is no wonder that weak capacity states have relied on easily-collectible trade and consumption taxes, which tend to be less progressive than taxes on income and wealth \parencite{Lieberman2003,Scott1988}. 
+
+
+% OK
+Implementation of redistributive policies, such as basic education, health-care, social assistance, and insurance policies are also likely to be dependent on the infrastructural power of the state \parencite{Ziblatt2008}. At the same time, under authoritarianism, rulers have little incentive to supply equalizing public goods, regardless state capacity. In these regimes, the capacity---if any---to deliver these benefits, goes unused \parencite{BuenodeMesquitaetal2003}. \textcite{Soifer2013a} contributes to this line of reasoning, arguing that state capacity affects the credibility of the threat of redistribution under democratic regimes.
+
+
+\section{DEMOCRACY, STATE CAPACITY, AND INVESTOR CONFIDENCE\label{argument}}
+
+
+% ok
+In contrast to that intuitive account, we present a more nuanced understanding of the relationship between democracy, state capacity, and income inequality. Our theory focuses on changes in inequality since the 1970s, a period which has largely coincided with an increase in within-country inequality in most high- and middle- income countries. Counterintuitively, we argue that the combination of high state capacity and democracy is associated with increases in income inequality. We do not deny that the context of high infrastructural power democracy establishes preconditions for progressive taxation or redistributive policy. However, we  contend that other inequality-increasing mechanisms have dominated over the growth of inequality-reducing taxation and government spending patterns in these contexts since the 1970s, given the global trend in the expansion of FDI and financial development during this period.\footnote{See \textcite{Beck:2010aa} for growth of financial sector, and \textcite{UNCTAD:2012aa} for spread of FDI in recent decades.} We argue that democracy and high state capacity provide the context for optimal property rights and contract security, which favors investor confidence through lower risk for capitalist investors. The high-quality investment climate in democratic high capacity setting increases inequality through financial development and larger FDI flows.
+
+
+% ok
+Democratic regimes have been widely portrayed to be more likely to respect private property rights and provide greater rule of law, incentivizing capitalist investor confidence \parencite{NorthandWeingast1989,Olson:2000aa}. An influential argument has connected democracy with higher FDI inflows precisely because of greater investment security \parencite{Jensen2003}. \textcite{Jensen:2008aa} further argues that democratic regimes reduce investment risks by providing investors---most commonly multinational corporations---formal avenues of influencing policy through the legal system, allowing firms to both observe the legislative process and anticipate changes in policy through greater transparency in the decision-making process and through the potential suffering of larger ``audience costs'' by reneging on commitments with foreign investors. \textcite{Jensen2003,Jensen:2008aa,Busse:2007aa} have provided empirical evidence for the positive association between democratic rule and FDI.
+
+
+% ok
+At the same time, democracy alone is not enough to secure investor confidence. In the absence of the state's infrastructural and coercive power, protection of property rights is hardly possible. Infrastructural capacity of state institutions---conceptually distinct from regime type---is likely to be another major determinant of FDI \parencite{LiandResnick2003}. Contract enforcement---based on state capacity to enforce the rule of law among private agents---is likely to be crucial for business confidence and attracting foreign investors, along with the protection of private property from arbitrary government involvement. A long line of literature in contract theory links the economic realities of organizations and societies to the type and quality of contracts that can be written and enforced \parencite{Coase1960,Williamson1985}. The state's infrastructural power clearly underlies this positive contractual environment. The ``watchman'' capacities of the state Weberian-like central and local level bureaucracies, impartial courts, uniform weights and measures, and effective law enforcement institutions are crucial for reducing uncertainty and transaction costs.
+
+% ok
+Contract security is greatly enhanced by smoothly functioning national level markets, which, in turn, require a considerable state infrastructural power. As \textcite[252]{Chaudry1993} notes, ``creating and regulating markets requires myriad financial, legal, and civil institutions, with stable and form long-term commitments to regulate the actions of actors.'' \textcite{Besley2009} argue that state extractive capacity crucially supports the development of ``legal'' institutions supporting a contractual environment. By contrast, weak states with absent territorial control are not able to provide these market-enhancing public goods, resulting in below-average investor confidence. In addition, weak states with a low ability to penetrate territories with national bureaucracies may be incapable of dealing with the existence of pre-capitalist monopolies, obstructing the development of national markets \parencite{Polanyi1944}. Given that, it is likely that the highest level of investor confidence exists, on average, where democracy and high state capacity coincide. In the FDI literature, \textcite{LiandResnick2003} have argued that FDI inflows tend to be highest in societies that combine both democratic rule and high bureaucratic capacity. 
+
+% ok
+In addition to fomenting FDI inflows, the democratic high-capacity contexts offer an especially nurturing context for financial development. As \textcite[4]{Haber:2008aa} note, political rulers have ``a strong incentive to govern financial systems so as to facilitate their own political survival,''---for example, limiting competition through higher barriers of entry, which allows the appropriation or distribution of rents among supporters stemming from banks and financial services. This rent-seeking behavior is likely to hinder the development of competitive banking systems and securities markets. At the same time, the checks and balances inherent to a democratic system reduce the leverage of governments to expropriate assets and threaten property rights in the financial sector \parencite{Haber:2008aa}. Democratic politicians also have incentives to promote competitive banking sectors and thriving securities markets when they perceive that the majority of the population benefits from increased access to banking services and cheaper private credit, promoting the electoral fortunes of politicians \parencite{Menaldo:2015aa}.
+
+% ok
+State infrastructural power is also likely to support financial development in capitalist economies along with democratic rule, reducing important market failures stemming from information asymmetries obstructing contract writing and enforcement. For example, the creation of accurate property registers by the state allows the banks to know who owns which assets, which facilitates the creation of contracts. The enforcement of modern bankruptcy and the diffusion of modern accounting standards underlying credit expansion may depend on the state's ability to penetrate the reaches of its territory. The latter have a crucial role in mitigating information asymmetries, allowing banks and investors to better assess their risks, which leads to a greater expansion of credit markets. Stock market expansion is likely to depend on stronger corporate governance and the capacity to enforce bankruptcy laws, which reduces informational asymmetries and transaction costs.\footnote{This section is based on \textcite{Haber:2008aa} and \textcite{Menaldo:2015aa}.}
+
+
+% ok
+There is an additional reason why low infrastructural power may obstruct the growth of a financial system. Low state capacity might not only to contribute to market failure, but also to political failure. Limited capacity to tax populations and gather revenue, accompanying low infrastructural power, might increase the likelihood of the state to turn to the financial system for revenues needed for the political survival of incumbents \parencite{Becerra2012a,Menaldo:2016aa}. As \textcite[458]{Menaldo:2016aa} argues, ``in weak states, a ruler's fiscal imperative drives the political and market failures that have been putatively fingered as independent causes of financial underdevelopment.'' In weak capacity states, the rulers are especially likely to limit competition and create concentrated banking sectors for rent-extraction purposes, while demanding a share of those rents from the financial sector to finance their expenses \parencite[458]{Menaldo:2016aa}. 
+
+% ok
+Thus far, we have argued that democratic and high-capacity institutions are more likely to have a high-quality investment climate that attracts more FDI and develops sophisticated financial sectors. The second step of our argument connects these two variables with the trend in increasing income inequality. First, considerable recent evidence has pointed out that FDI flows may increase income inequality in both developed and developing worlds \parencite{Jaumotte:2013aa,ReuvenyandLi2003,Basu:2007aa}. FDI inflows lead to an increased demand for skilled workers, associated with growing wage differentials between skilled and unskilled jobs, which is likely to increase income inequality \parencite{Feenstra:1997aa}. For example, the investment of MNC in some sectors is likely to create a small sector of high wage earners and a large backward sector of low wages \parencite{Nafziger:1997aa}. With increasing FDI flows, multinational corporations and transnational elites become more relevant actors in national politics and are likely to exert downward pressure to labor protecting regulations, redistributive taxation, and transfers \parencite{Wong2016}. 
+
+
+% OK
+The development of a sophisticated financial system is another transmission channel how investor confidence in high-capacity democracies produces higher income inequality. While scholars have long recognized the growth-promoting and poverty-reducing effects of financial development through incentivizing and channeling savings \parencite{Beck:2008aa}, recent literature has connected financial development with higher inequality. At least six recent papers find a positive association between financial sector size---usually proxied by private credit as a percentage of GDP---and an increase in income inequality, both in cross-national and subnational context \parencite{Jaumotte:2013aa,Li:2014aa,Dabla-Norris:2015aa,Denk2015,Jauch2016,DeHaan2017}.
+
+
+% ok
+According to this view, financial development is likely to happen in the ``intensive margin'' through improvements in the quality and range of financial services for those who already enjoy access to the financial system, which has an important potential to widen inequality and perpetuate intergenerational differences in economic opportunity \parencite{Greenwood1990}. Highly developed financial instruments, such as bonds and stocks, are likely to provide higher rates of returns to pre-existing capital, providing a basis for the concentration of financial assets \parencite{Piketty:2014aa}. Cheaper credit from banks and access to investment instruments may also disproportionately reward those with the most skills and initiative, leading to the widening of the distribution of income.
+
+
+% ok
+In addition, the un-equalizing effects of the financial system could work through a labor income channel. Financial sector employees are strongly concentrated at the top of the income distribution, and their earnings exceed those of employees with similar profiles (such as age, gender or education) in other sectors. Asymmetric compensation schemes for bank managers may especially contribute to this un-equalizing dynamic \parencite{Denk2015}. In addition, large financial sectors contribute to moral hazard problems. Given bailout expectations by the government in the financial sector, sophisticated financial instruments encourage high returns through risk-taking behaviors, benefiting members of the financial elite compared to other sectors of the economy \parencite{Korinek2014}. Similarly, financial liberalization, while aimed at facilitating access to financial services, might increase inequality due to the regulatory capture of financial elites \parencite{Claessens2007}. 
+
+
+% ok
+To summarize, our theoretical propositions have the following empirical implications. Our main hypothesis is that democratic rule under high state infrastructural power increases income inequality over time. We also posit that a democratic high infrastructural power context is associated with a high-quality investment environment, larger annual FDI inflows, and faster growth of the financial sector. Finally, we also expect to see a positive relationship of investor confidence, FDI inflows, and the size of the financial sector with income inequality.
+
+
+
+\section{VARIABLES AND MEASUREMENT\label{vars:and:measurement}}
+
+
+\paragraph{Inequality} Our outcome variable is income inequality measured by the Gini coefficient. The Gini coefficient ranges from 0 (perfect equality) to 1 (one person has all the income). Previous analyses of determinants of income inequality have generally been plagued by data comparability problems of the existing data sources \parencite{Solt2016}. Welfare definitions and income scales vary between household surveys administered in various countries and at different times, thus, harmonizing measurement across time and space is an important task for any analysis of inequality \parencite[676]{Morgan2013}.\footnote{Comparability problems abound: data on inequality are based on different definitions such as expenditures; market (gross) income, which consists mainly of salaries; or net income, which is gross income plus government redistribution in terms of tax and transfers \parencite{Wong2016}.} The Luxembourg Income Study (LIS) offers a gold standard for the comparability of different income concepts of surveys, however, only offers data for a limited number of nations, mostly in the developed world.
+
+
+To mitigate these concerns, we use the Standardized World Income Inequality Database (SWIID) \parencite{Solt2016}, for our inequality measure, which allows the maximization of both comparability and coverage. Using the LIS as the methodological standard for comparability, the SWIID incorporates data from various data sources, such as OECD's Income Distribution Database, the Socio-Economic Database for Latin America and the Caribbean, generated by CEDLAS, the World Bank, Eurostat, PovcalNet of the World Bank, national statistical offices around the world, and several academic sources. SWIID uses these sources to calculate a ``model-based multiple imputation estimates of the many missing observations in the LIS series'' \parencite[1271]{Solt2016}, maximizing both comparability and sample size.
+
+
+SWIID is composed of four indicators---disposable income inequality (post-tax and transfer), market income inequality (pre-tax and transfer), absolute redistribution (the difference between the market income and disposable income Gini indexes), and relative redistribution (the percentage by which market income inequality is reduced). We use disposable income inequality as our main dependent variable, as measures of market inequality and redistribution do not exist for most countries in the developing world. For example, the data for disposable income inequality exists for $\Sexpr{round((nrow(subset(df, region != "Europe/U.S." & !is.na(gini_disp.mean)))*100)/nrow(subset(df, region != "Europe/U.S.")), 1)}$\% of country years in the developing world since 1970, while only \Sexpr{round((nrow(subset(df, region != "Europe/U.S." & !is.na(gini_mkt.mean)))*100)/nrow(subset(df, region != "Europe/U.S.")), 1)}\% of country years for market inequality.
+
+\paragraph{Democracy} We adopt Polity IV and the Electoral Democracy (Polyarchy) from the V-Dem dataset as our democracy measures. Both of these measures offer almost universal country coverage over time. The Polity IV dataset provides an ordinal ranking of political regimes on a scale of $10$ to $-10$ (democracy to authoritarian regimes), based on the following five dimensions: competitiveness and the regulation of political participation, competitiveness and openness of executive recruitment, and constraints on the chief executive. The Electoral Democracy Index of V-Dem intends to capture \textcite{Dahl1971}'s concept of \emph{polyarchy} and is formed by an aggregate index of capturing the presence of the following institutions and policies: (1) elected officials; (2) free, fair, and frequent elections; (3) freedom of expression and alternative sources of information; (4) associational autonomy; and (5) inclusive citizenship (universal suffrage, as in \cite[]{Coppedge2016}).\footnote{Electoral Democracy Index is formed by taking the average of, on the one hand, the weighted average of the indices measuring freedom of association, clean elections (v2xel\_frefair), freedom of expression (\texttt{v2x\_freexp\_thick}), elected officials (\texttt{v2x\_elecoff}), and suffrage (\texttt{v2x\_suffr}) and, on the other, the five-way multiplicative interaction between those indices. This is halfway between a straight average and strict multiplication, meaning the average of the two. It is thus a compromise between the two most well-known aggregation formulas in the literature, both allowing (partial) ``compensation'' in one subcomponent for lack of polyarchy in the others, but also punishing countries not strong in one sub-component according to the ``weakest link'' argument. The aggregation is done at the level of Dahl's sub-components (with the one exception of the non-electoral component; \cite[49]{Coppedge2016}).} 
+
+
+
+
+\paragraph{State capacity} Operationalizing state capacity is a complicated task. The chosen measurement should not reflect the policy preferences of governments, which could be affected by regime type. Taxation rates---a commonly used measure---are likely to be directly affected by these preferences. As \textcite[353]{Fukuyama2013} notes, there ``is a difference between extractive potential and actual extraction rates.'' For example, although the US collects less income taxes compared to Scandinavian Social democracies, it is not possible to argue that it is a weak state. Similarly, higher taxation levels do not imply higher state capacity. In late imperial China, ``high taxes on peasants [...] were the result of rulers' lack of power. Chinese rulers consistently attempted to limit official's excessive extractions from the masses, but were unable to do so'' \parencite[301]{Kiser1992}.
+
+
+
+Other measures, most notably expert survey-based indicators, are likely to be affected by coding bias. For example, \textcite[542]{Kurtz2012} explain that measurements that rely on surveys, particularly, of foreign investors or domestic firms, wrongly assume that ``the interests of investors [...] and the interest of the nation are essentially coterminous.'' In instances where the state is strong, and able to levy taxes and impose regulations, for example, the state will most likely ``be judged `burdensome' and `growth-inhibiting' by many businesspersons'' \parencite[542]{Kurtz2007}. 
+
+
+Recent literature has proposed a number of alternatives for measuring the levels of state capacity. For example, \textcite{Luna2014} and \textcite{Luna2017} employ a survey-based design to measure contemporary subnational state capacity.\footnote{Concretely, they ask residents questions about their experiences with the state. For instance, how long it takes the police to arrive at their home if called to respond to a burglary.} Unfortunately, part of our challenge also consists of being able to capture levels of state capacity \emph{overtime}.\footnote{See for example \textcite[]{Bahamonde:2017ac} where he uses an earthquake approach to capture levels of state capacity overtime in Chile.} Others have employed investment levels of public goods, such as infrastructure, roads, electrification (measured as light intensity per pixel), and railroads \parencite{Mann1984a,Enriquez2017,Acemoglu2005a,Saylor2012,Thies2009,Besley2009,Huntington2014,Coatsworth1974a}. However, it is possible that these infrastructure investments reflect---similarly to taxation rates---government's policy preferences, or have been implemented by private companies, not the state \parencite[593]{Soifer2012}. 
+
+
+Following \textcite{Soifer2013a}, using data from the United Nations database on national censuses, we measure the infrastructural power of the state to penetrate its territory by observing whether the state is able to conduct regular censuses.\footnote{See this \href{https://unstats.un.org/unsd/demographic/sources/census/censusdates.htm}{link}.} The major advantage of that measure relies in the fact that census implementation is free of subjectivity in coding decisions, and does not respond to ``policy preferences.'' We construct a continuous indicator that counts the cumulative number of censuses in every country in our sample that we were able to conduct, beginning in 1946. We opted for a cumulative measure instead of a level measure---such as the presence or absence of a census in a country in the past 10 years---because it is likely to reflect better the long-term historical development of state institutions and their ability to implement decisions throughout national territory.
+
+We believe the cumulative measure we use in this paper proxies both the ``redistributive potential'' through taxation and transfers, and the state's ``watchman capacities,'' such as functioning bureaucracies and legal institutions. The cumulative census indicator captures the ability of the central state to gather information about its subjects, which is crucial for collecting taxes, while its continuous implementation needs functioning central (and often, local) bureaucracies and effective law enforcement institutions. 
+
+For example, our cumulative measurement captures the learning effects associated with state consolidation. Particularly, performing continuous censuses overtime will have  year-by-year decreasing marginal costs. \textcite[254]{Pierson2000} explains that ``New social initiatives---such as  the creation of organizations or institutions---usually entail considerable start-up costs [and] learn by doing.'' In contrast to ``strong'' states, ``weak'' states will not be able to bear these costs overtime. The ideal ``strong state'' will be able to use the accumulated stock of knowledge, being capable of  fielding technologies like census-taking bureaucracies not only once, but multiple times, reproducing the infrastructural power of the state throughout the territory and overtime. By contrast, the contemporaneous (e.g., level) census measures of state capacity, such as the one employed in \textcite{Soifer2013a} and \textcite[]{Hanson2015}, should  be less efficient for capturing the long-term development of state's infrastructural power. 
+
+
+
+In our empirical analysis, we complement and check the robustness of our cumulative census measure with several other proxies for state development. Our results are robust to the State Antiquity Index proposed by \textcite{Bockstette2002} and updated by  \textcite{Hanson2015}, and other, less ideal, measurements based on fiscal capacity.\footnote{The Index measures the roots of the state in its territory using three components: (1) the amount time from year 0 (C.E.) to 1950 that a government existed above the tribal level, (2) whether that government was foreign-based or locally based, and (3) the extent of the modern-day territory that was ruled by that government.}
+
+
+\paragraph{Control Variables} We add a series of control variables to our main analysis to account for alternative factors outlined in the previous literature that might be associated with inequality changes. We add GDP per capita to control for level of economic development, and a first differenced GDP variable to account for growth dynamics. We include trade openness as an indicator of economic openness, measured as imports and exports as a percent of GDP \parencite{ReuvenyandLi2003}. We also control for inflation, measured by the Consumer Price Index. Finally, we include two demographic controls: the share of population above the age of 65, and the share of urban population. Our control variables come from the World Development Indicators (WDI, \textcite{WDI:World:Bank}). In the Mechanisms section, we discuss more details about our control variables regarding investor confidence, FDI, and financial development. 
+
+
+\section{RESEARCH DESIGN AND RESULTS}\label{time:series:models}
+
+% hector's notes section
+	% ``We therefore want to account for the nonstationary nature of the data by allowing for the possibility of a long-run relationship, while also investigating whether short-term perturbations are related. Error correction models (ECMs) are designed to do exactly this''
+
+	% ``Theory may suggest that some set of variables are in equilibrium, yet, the variables are nonstationary'' (\parencite[157]{Box-Steffensmeier:2014fe})
+
+	%``The logic is that X and Y are influenced not just by short-term shocks but also by how much they have moved apart. There is a reequilibrating process that pushes them back together; this notion of pushing a system out of equi- librium back toward equilibrium is the logic behind the cointegrating vector.'' (\parencite[160]{Box-Steffensmeier:2014fe})
+
+	% ``Most of the work in ECMs assumes the variables are I(1), but this assumption has loosened over time. In Chapter 7, in the fractional cointegration discussion we relax this to be within a standard deviation.'' (\parencite[160]{Box-Steffensmeier:2014fe})
+
+	% ECM: ``the error correction portion of the model [...] shows the response of each variable to movements out of equilibrium between the variables. In terms of interpretation, the equilibrium suggests that any random shock that separates the series will be short-lived. The series will return to equilibrium through error correction. Other than the addition of this term, the rest of the model is a simple VAR in first differences. Each'' (\parencite[162]{Box-Steffensmeier:2014fe})
+
+% old version
+% To test our hypothesis, we utilize a series of error correction models (ECMs). ECMs are very flexible tools. Under reasonable assumptions, they deliver unbiased estimators. Importantly, ECMs are appropriate for both integrated,\footnote{I.e., ever-increasing non-mean-reverting processes.} and non integrated time-series data \parencite[169-170]{Box-Steffensmeier:2014fe}.\footnote{However, since democracy, state capacity and inequality, are conceptually---and empirically---bounded variables, they cannot be really integrated processes.}Regardless, we present systematic evidence in favor of non-stationarity in \autoref{tab:unit:root:tests}.\footnote{Given that we have panels (i.e. countries), standard unit root tests are not advisable. We implemented the Fisher approximation} \todo{add Fisher approximation}
+
+% old version
+% Our hypothesis is interactive in nature. In principle, our strategy resembles \textcite[678-689]{Morgan2013}, who also estimate an ECM with an interaction term.\footnote{However, they cluster they standard errors. See \textcite{Green2001}. Instead, we prefer the inclusion of fixed effects.} In our case, we are interested in the combined effects of democracy and state capacity on inequality overtime. Specifically, we follow \textcite[317]{Hanson2015}, and include an interaction term which consists of the multiplication between the lagged values of democracy, and the lagged values of cumulative state capacity. 
+
+% old version
+% Following standard practice of ECMs, we also include a lagged dependent variable (LDV) to minimize the effect of previous values of inequality on contemporaneous values of inequality. Following conventional wisdom, control variables enter into the equation in both lagged and differenced forms, separately. Finally, to account for ``country-specific omitted factors that are either relatively stable over time or evolve smoothly over time'' \parencite[492]{Herzer2012}, we also include both country ($\alpha_{i}$) and year ($\lambda_{t}$) fixed effects. We believe, then, that our empirical strategy reflects and follows the conventional practices in time-series econometrics. More formally, we estimate the next equation:
+
+
+% 
+\paragraph{Estimation Procedures} used to test our hypothesis, were a series of error correction models (ECM) with country and year fixed effects. The ECMs, which are especially suitable for dealing with issues of non-stationarity, serial correlation, and unobserved country-level heterogeneity, could be used for both integrated and non-integrated time-series data \parencite[169-170]{Box-Steffensmeier:2014fe}. However, we maintain that our data exhibits important signs of non-stationarity. Given that we have panels (i.e. countries), standard unit root tests are not advisable. Thus, we implemented the Fisher-type test developed in \parencite{Choi2001}.\footnote{The null hypothesis is that all panels have a unit root. The routine used was \texttt{xtunitroot fisher}, which was implemented in \texttt{Stata} 15.} We find evidence that generally points to non-stationarity in both the dependent and independent variables. Test results are available upon request.%\todo{add \autoref{tab:unit:root:tests}}
+
+
+% 
+The ECM allows to estimate the effects of independent variables in both accumulated levels and year-to-year changes, which are both relevant for a slow-moving variable such as income inequality. By differencing both the dependent variable and the independent variables, ECMs provide a flexible way for dealing with non-stationary in the data. In the case of ECMs, the first difference of the dependent variable is regressed on the lagged-dependent variable in levels, plus the lagged levels and first differences of every independent variable \parencite{Franzese2002,Blaydes2011}. We add only the lagged level of our state capacity variable since this variable is highly time-invariant. Our main theoretical interest is the interaction term between the lagged values of democracy and the lagged values of cumulative state capacity (both in levels), although we also add differences of all independent variables to variables in our models. More formally, our main covariate of interest is $\rho$:
+
+% MODEL
+{\input{model.txt}\unskip}
+
+
+where $\gamma_{i}$ and $\lambda_{t}$ are the country and year fixed effects, respectively, $\mu_{i, t}$ the estimated residuals, and \emph{Control Variables} a matrix of length $n_{i, t}$ relevant control variables.
+
+% 
+\autoref{equation:0} $\beta_{2}$ captures the immediate effects, estimated by the yearly change in the dependent variable produced in the short-term shock to the explanatory variable. This effect occurs wholly at one point of time. The coefficients $\rho$ and $\alpha_{1}$ are used to account for long-term effects, also called the error correction component of the model \parencite[678]{Morgan2013}. The long-term effect is the portion that connects \texttt{X} and \texttt{Y}, which does not occur at one particular point in time, but is distributed temporally \parencite[678]{Morgan2013}. The magnitude of this effect is determined by $\frac{\rho}{\alpha_{1}}$ \parencite[191]{DeBoef2008}. Given that the effects of political variables, such as regime type and state capacity are likely to be distributed over many years, the ECMs are especially useful strategies for testing our hypothesis. 
+
+% 
+The inclusion of a lagged-dependent variable, in turn, controls for autocorrelation. To account for ``country-specific omitted factors that are either relatively stable over time or evolve smoothly over time'' \parencite[492]{Herzer2012}, we also include country fixed effects. We used fixed effects because we are particularly interested in changes within individual countries over time. By contrast, the cross-national differences in inequality do not change much over time, as inequality is a slow-moving variable (and hence, the small coefficients in the regression output tables). At the same time, we admit that including country fixed effects comes with the cost of controlling for all cross-country variation and solely relying on estimates from within-country dynamics.
+
+%\todo{add Hausman Test here}
+
+\paragraph{Results}
+
+
+We start the presentation of our results with a model without the interaction term (without $\rho$ in \autoref{equation:0}). Our results directly replicate previous studies about inequality \parencite{GradsteinandMilanovic2004,Timmons2010,Wong2016}. Model 0 shows null results between democracy (measured both in levels and yearly changes) and inequality, while controlling for covariates typically used in the literature. This is considering country and year fixed effects. 
+
+\autoref{equation:0} (the benchmark model, including $\rho$) is presented in the second column of \autoref{main:models:table}, along with other five other specifications. Our main theoretical interest is the interaction term between the lagged values of polity, and the lagged values of cumulative state capacity. The results directly support our counterintuitive theoretical contentions: inequality increases when state capacity and democracy are high. Acknowledging that neither constitutive terms nor interaction terms are directly interpretable \parencite{Brambor2006}, we still note that the interaction term is positive and significant ($\alpha\;<\;\Sexpr{significance.level.interaction.term.model.1}$).  
+
+% main:models:table
+<<main:models:table, echo = FALSE, warning = FALSE, message = F, cache = FALSE, results='asis'>>=
+
+@
+
+
+We follow the advice of \textcite{Berry2012a} and estimate \emph{both} the conditional effect of democracy at different levels of state capacity, \emph{and} the conditional effect of state capacity at different levels of democracy, including 95\% confidence intervals (\autoref{fig:interaction:model:1:plot}).\footnote{Figure made using {\bf R} package \texttt{DAMisc} \parencite[]{Armstrong2016}.} The left panel of \autoref{fig:interaction:model:1:plot} shows that the average levels of democracy have a positive effect on income inequality when state capacity is high, while it has a negative effect Gini in lower values of cumulative census variable. The right panel also supports our hypothesis. Average levels of state capacity have a positive effect on income inequality contingent on high values of democracy, which directly aligns with our hypothesis.
+
+
+% interaction:model:1:plot
+<<interaction:model:1:plot, echo = FALSE, fig.pos='h', warning = FALSE, message = F, fig.cap=interaction.model.1.plot.note, fig.align='center', fig.width=8, fig.height=5,dpi=10000,cache = FALSE>>=
+
+@
+
+
+Following \textcite[191]{DeBoef2008}, we compute the long-run effect, which is the product of the long-run multiplier (LRM) and the short-run effects \parencite[898]{Blaydes2011}. The short-run effect is also called the error correction rate (ECR) \textcite[191]{DeBoef2008}. More specifically, the LRM ``is the cumulative effect of a covariate on the outcome'' that spreads over future time periods \parencite[292]{Keele2016}. In turn, the ECR is the ``speed of adjustment'' \parencite[295]{Keele2016}. In our case, the LRM is $\frac{\rho}{\alpha_{1}}$ = $\frac{\Sexpr{round(summary(model.1)$coefficients["lag.polity:lag.cum.census",1],5)}}{\Sexpr{round(summary(model.1)$coefficients["lag.gini_disp.mean",1],5)}}$ = $\Sexpr{round(summary(model.1)$coefficients["lag.polity:lag.cum.census",1]/summary(model.1)$coefficients["lag.gini_disp.mean",1],4)}$, while the ECR is $\rho \;=\; \Sexpr{round(summary(model.1)$coefficients["lag.gini_disp.mean",1],5)}$. Consequently, the long-run effect is LRM$\times$ECR \;=\; $\Sexpr{lrm*ecr}$. Substantively that means that if state capacity and democracy levels jointly increase, \emph{inequality increases in the long run} at a rate dictated by this long-run effect, dissipating after a number of periods. Using the already mentioned LRM along with the ECR, we observe that Gini points increase immediately in $t+1 \;=\; \Sexpr{long.run.effect.d$Inequality[long.run.effect.d$Periods=='t+1']}$, continue increasing $\Sexpr{long.run.effect.d$Inequality[long.run.effect.d$Periods=='t+2']}$ the next period, when both democracy and state capacity increase one unit each. 
+
+To put these results in context, a country with the highest levels of democracy and state capacity, like \Sexpr{as.character(conditional.effects.df.left.dem.high.state.high$country[1])} from $\Sexpr{as.character(conditional.effects.df.left.dem.high.state.high$year[1])}$ to $\Sexpr{as.character(conditional.effects.df.left.dem.high.state.high$year[4])}$, is expected to \emph{increase} its annual inequality levels by an order of $\Sexpr{round(unique(conditional.effects.df.left.dem.high.state.high$effect[conditional.effects.df.left.dem.high.state.high$country=="Ireland"]),4)}$ immediately (short-time effect).\footnote{These quantities of interests were obtained by computing, as per \autoref{equation:0}, $\beta_{2}+(\rho\times\text{State Capacity}_{i,t-1}) = \frac{\partial \Delta\text{Gini}_{it}}{\partial \text{Polity}_{i,t-1}}$. See \cite[73]{Brambor2006}, equation 13.} This is a small, but still a substantively significant effect, given the slow-moving nature of income inequality. The estimated cross-country long-term effects are shown in \autoref{fig:long:run:effect:p2}. 
+
+<<long:run:effect:p2, echo = FALSE, fig.pos='h', warning = FALSE, message = F, fig.cap=long.run.effect.p.note,fig.align='center', fig.width=8, fig.height=5,dpi=10000,cache = FALSE>>=
+
+@
+
+
+%The previous cross-country literature on income inequality has been loose when it comes to the proper interpretation of interaction terms, usually showing one of the two conditional effects.\footnote{Either the effect of $X$ conditioned on $Z$, on $Y$, \emph{or} the effect of $Z$ conditioned on $X$, on $Y$ However, \emph{both} should be interpreted.} Given that the symmetry of an interaction term is not guaranteed,\footnote{For example, it might be the case that Democracy|State Capacity is positive and significant, but State Capacity|Democracy is negative and non-significant.} 
+
+
+%A country with the highest levels of democracy and state capacity, like \Sexpr{as.character(conditional.effects.df.left.dem.high.state.high$country[1])} from $\Sexpr{as.character(conditional.effects.df.left.dem.high.state.high$year[1])}$ to $\Sexpr{as.character(conditional.effects.df.left.dem.high.state.high$year[4])}$, is expected to \emph{increase} its annual inequality levels by an order of $\Sexpr{round(unique(conditional.effects.df.left.dem.high.state.high$effect[conditional.effects.df.left.dem.high.state.high$country=="Ireland"]),4)}$ immediately (short-time effect).\footnote{These quantities of interests were obtained by computing, as per \autoref{equation:0}, $\beta_{2}+(\rho\times\text{State Capacity}_{it-1}) = \frac{\partial \Delta\text{Gini}_{it}}{\partial \text{Polity}_{it-1}}$. See \cite[73]{Brambor2006}, equation 13.} Although the annual change might look small, this would translate into 0.035 increase in Gini coefficient over the period of 50 years. These changes are relevant for a slow-moving variable such as income inequality.
+
+
+%A country with almost zero state capacity, but with average values of democracy, like \Sexpr{as.character(data.frame(df.complete.model.1$country[df.complete.model.1$lag.cum.census==2 & round(df.complete.model.1$lag.polity, 0)==round(mean(df.complete.model.1$lag.polity), 0)])[1,1])} in \Sexpr{as.character(data.frame(df.complete.model.1$year[df.complete.model.1$lag.cum.census==2 & round(df.complete.model.1$lag.polity, 0)==round(mean(df.complete.model.1$lag.polity), 0)])[1,1])}, is expected to experience an annual change in inequality of order $\Sexpr{round(as.numeric(coefficients(model.1)["lag.polity"]),5)}$,  reducing inequality immediately. Inversely, a country with zero democracy, but with average values of state capacity, like \Sexpr{as.character(data.frame(df.complete.model.1$country[min(df.complete.model.1$lag.polity) & round(df.complete.model.1$lag.cum.census, 0)==round(mean(df.complete.model.1$lag.polity), 0)])[1,1])} in \Sexpr{as.character(data.frame(df.complete.model.1$year[min(df.complete.model.1$lag.polity) & round(df.complete.model.1$lag.cum.census, 0)==round(mean(df.complete.model.1$lag.polity), 0)])[1,1])}, is expected to experience an annual change in inequality of order $\Sexpr{round(as.numeric(coefficients(model.1)["lag.cum.census"]),5)}$, reducing inequality in the short run.
+
+%\todo{let's leave this out as well, for the same reason?}
+%The right panel also suggests a positive relationship between state capacity and inequality, particularly under high levels of democracy.\footnote{Polity scores of 10.} For instance, Japan between $\Sexpr{min(as.numeric(as.character(conditional.effects.df.right$year[conditional.effects.df.right$country=="Japan" & conditional.effects.df.right$dem==10 & conditional.effects.df.right$stat.cap==10])))}$ and $\Sexpr{max(as.numeric(as.character(conditional.effects.df.right$year[conditional.effects.df.right$country=="Japan" & conditional.effects.df.right$dem==10 & conditional.effects.df.right$stat.cap==10])))}$ is expected to immediately \emph{increase} its inequality levels by an order of $\Sexpr{round(unique(conditional.effects.df.right$effect[conditional.effects.df.right$country=="Japan" & conditional.effects.df.right$dem==10 & conditional.effects.df.right$stat.cap==10]),4)}$ annually.\footnote{These quantities of interests were obtained by computing, as per \autoref{equation:0}, $\beta_{3}+(\rho\times\text{Polity}_{it-1}) = \frac{\partial \Delta\text{Gini}_{it}}{\partial \text{State Capacity}_{it-1}}$. See \textcite[73]{Brambor2006} (equation 13). This is the conditional effect of state capacity on inequality, at different values of democracy (right panel, \autoref{fig:interaction:model:1:plot}).} Importantly, a significant portion (\Sexpr{round((length(conditional.effects.df.right$country[conditional.effects.df.right$dem==10 & conditional.effects.df.right$effect>0])*100)/nrow(conditional.effects.df.right),0)}\%) of full democracies falls into the area of statistical significance (top far right). The bottom far left portion of the right panel shows that state capacity has a negative effect on inequality under fully authoritarian regimes.\footnote{Polity scores below -3.} 
+
+Model 2 produces identical results to Model 1 using the V-Dem Polyarchy democracy measure. The interaction plots also suggest a significant interaction between polyarchy and cumulative census variable (not shown).\footnote{Plots available upon request.} In Model 3, we replicate our main results, however, excluding industrial countries from the sample, using the polity variable as our democracy measure. Therefore, we have certainty that our results are not driven by an increasing inequality trend in the industrial world since the 1970s, but can be generalized more widely to other regions \parencite{Piketty:2014aa,Atkinson:2015aa}. Identical results were produced using V-Dem Polyarchy (Model 4). 
+
+Further models include a series of robustness tests. Fist possible concern raises with the particular choice of measurement of state capacity, captured via cumulative census variable. Most nations celebrate censuses in 10-year  cycles. However, a small number of both developed and developing world nations have celebrated censuses in 5-year cycles.\footnote{Among the countries that have data on inequality, these countries are Australia, Canada, Denmark, Germany, Ireland, Japan and New Zealand in the industrial world, and Brazil, M\'exico, South Korea and Turkey among developing nations.} Reasons behind these dynamics vary, and are only partially associated with state ability to implement censuses. For example, Brazil and M\'exico started to celebratea  5-year census cycle due to a significant need to better understand the dynamics around poverty and inequality in the 1990s \parencite{Ferreira2000}. At the same time, major industrial nations---such as the US and the UK---have not diverged from the 10-year census cycle. To avoid potential bias stemming from some unobserved factors related to the different cycle lengths, we excluded countries with 5-year cycles from our analysis in Models 5 and 6, testing each model with the two different democracy measures. The results are identical to the full sample.
+
+In Models 7-9, we control for different government spending items to account for the idea that government spending may possibly offset inequality increases posited by our theoretical framework. Given that the redistributive effects of democracy have widely been portrayed to work through education, and health care spending, as well as welfare transfers, we would expect that adding these controls reduces the statistical and substantive importance of the democracy variable to the models \parencite{HuberandStephens2012,Morgan2013}. In Model 7, we add government education spending as a percentage of GDP on the right side of the equation. It has been widely posited that democracy might lead to lower inequality through investment in human capital, especially in education \parencite{HuberandStephens2012,Morgan2013}. In Model 8, government health spending is included, while Model 9 controls for Income Tax revenue as a percentage of GDP---a measure of the size of progressive taxation. We replicate our significant results after adding these control variables. Data for all of these control variables comes from WDI. 
+
+Other models introduce further robustness checks. In Model 10, we control for democracy's duration to control for possible long-lasting effects of democratic regimes leading to higher levels of inequality, as suggested by \textcite{Wong2016}. Our results are also robust to various other measurements of state capacity and infrastructural power. In Model 11, we replicate our results using State Antiquity Index developed by \textcite{Bockstette2002} as conditioning variable. Model 12 tests the robustness of the results with another, albeit imperfect, proxy invoked to measure state capacity in the previous literature---income tax as a percentage of GDP. Our results remain unaltered.
+
+
+
+% robustness:models
+\afterpage{
+{\thispagestyle{empty}
+<<robustness:models:table, echo = FALSE, warning = FALSE, message = F, cache = FALSE, results='asis'>>=
+
+@
+}}
+
+
+
+\paragraph{Mechanisms}
+
+
+
+% ok
+In this section we empirically test the causal mechanisms portrayed by our theory. We have posited that democratic high infrastructural power contexts increase inequality through high-quality investment climate, FDI inflows and financial development. First, we expect to see a positive interaction effect of democratic rule and state capacity on three outcomes: investment climate, FDI inflows and the size of the financial sector. Lastly, we also test if our three mechanism variables are statistically associated with inequality increases in the post-1970 period. 
+
+
+% mechanisms:models:table
+\afterpage{
+{\thispagestyle{empty}
+<<mechanisms:models:table, echo = FALSE, warning = FALSE, message = F, cache = FALSE, results='asis'>>=
+
+@
+}}
+
+
+% ok
+We proxy investment climate quality with a widely used indicator in previous literature: credit ratings published by the institutional investor (II) magazine \parencite{Arias:2018aa,DiGiuseppe:2012aa}. This indicator is based on semiannual credit surveys, which collect expert opinions to rank country creditworthiness, ranging on a scale from 0 to 100. Higher values represent more credit-worthy states. We use the yearly average, which spans 1980 to 2013 and covers up to 110 developing countries. The major advantage of this indicator compared to main alternatives, such as Heritage Foundation or Fraser Foundation economic freedom indexes, relies on the fact that it is available for longer time-frames, a similar period to our main analysis, allowing comparability of the results. FDI is measured by annual FDI inflows to a country, as a percentage of GDP. The data are retrieved from WDI. We measure financial development with an indicator commonly used in studies of financial development---Private Credit by Deposit Money Banks and Other Financial Institutions to GDP. This measure captures the ratio of claims on the private sector by deposit money banks and other financial institutions to GDP \parencite{Beck:2010aa}. 
+
+
+% ok
+We test these relationships using similar ECMs as in the main analysis. For the analysis of investment climate, FDI inflows and financial sector size, we add a series of control variables portrayed as determinants of business confidence, FDI inflows, and a financial depth model in addition to democracy and state capacity, such as GDP per capita, GDP annual change, trade openness and inflation. 
+
+
+% ok
+First, we find---rather intuitively---considerable evidence that democratic high state capacity context provides an environment that favors positive investment climate, FDI inflows and financial sophistication. Models 14-16 use nstitutional investor credit ratings, FDI, and financial development as dependent variables, respectively. In Model 14, we estimate the interaction effect of polity and cumulative census on institutional investor credit ratings. The sign of the interaction term is positive, while it slightly misses significance at conventional levels. In Model 16, we document a positive and significant interaction effect of polity and cumulative state capacity variable on private credit to GDP. Although democracy and state capacity interaction effect are insignificant when explaining FDI inflows (Model 15), we find that the interaction of these variables might affect FDI through better investment climate. In Model 17, we document a positive and significant effect of institutional investor credit ratings on FDI. Similarly, investor confidence is highly significant predictor of finance sector size (Model 18).
+
+% ok
+Second, we also find evidence that better investment climate, FDI inflows and financial depth work as a mechanism between inequality increases in high-capacity democracies. Models 19-21 first used a differenced Gini coefficient as a dependent variable, and institutional investor credit ratings, FDI inflows, and financial development as dependent variables, respectively. The control variables are from our baseline model (Model 1). In Model 19, we document a positive relationship between institutional investor credit ratings, and change in income inequality, although this relationship is not robust to country fixed effects. The FDI remains insignificant, but positive, in Model 20, however. In Model 21 we document a positive and statistically significant effect of financial development variable on Gini coefficient. These effects are also substantively important. One unit increase of private credit as GDP, results in \Sexpr{round(as.data.frame(model.21$coefficients)["lag.financial_system_pcrdbofgdp",],5)} change in Gini points. These results point to a direction that the interactive effect of democratic rule and infrastructural power posited by our theory and tested in our main analysis might operate through investor confidence and financial development. 
+
+
+\section{CONCLUSION}\label{conclusion}
+
+% ok
+In this paper we have explored whether the effect of democratic rule on income inequality could be conditional on state capacity. Counterintuitively, we argue that democratic rule combined with high state infrastructural power is associated with increasing income inequality, through the positive effect on investor confidence, which tends to produce larger financial sectors and attract larger FDI inflows in the post-1970 period. Both of these factors favor income concentration to the top. To test our hypothesis, we introduced a novel measure of state capacity based on cumulative census administration. Our empirical results are robust to various alternative measures of state infrastructural power and democracy, and apply beyond the context of industrial world, a high-capacity democratic context where inequality has increased sharply in recent decades. In addition, we also test the mechanisms of our theory, finding broadly consistent support of our claim that the interactive effect of democratic rule and infrastructural power posited in our main analysis might operate through high-quality investment climate, financial development and FDI.
+
+
+
+% ok
+We believe our conclusion speaks directly to recent literature on increasing inequality in the developed and many regions of the developing world, reflecting the natural tendency of well-functioning capitalism to produce higher income concentration \parencite{Piketty:2014aa}. Institutionalist literature has implicitly assumed that ``inclusive institutions'' do not only promote development, but also more equal income distribution, at least in the long-term \parencite{AcemogluJohnsonRobinson2001}. In this paper, we have provided evidence that this conclusion may not be warranted, and ``inclusive'' institutions-captured in the combination of democratic regime type and high-capacity state institutions-might well lead to a trend of steady increases in income inequality, which we argue happens through higher business confidence, financial development, and FDI inflows. These variables, generally associated with both democratic and well-functioning state institutions \parencite{Jensen:2008aa,LiandResnick2003}, and high economic growth could well bring higher inequality as a side-effect. Further research should clarify the additional pathways through which the high-capacity state institutions and democratic regime type affect inequality. 
+
+
+
+
+
+\clearpage
+\newpage
+\pagenumbering{roman}
+\setcounter{page}{1}
+\printbibliography
+\clearpage
+\newpage
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% WORD COUNT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\newpage
+\pagenumbering{gobble}
+<<wordcount, echo=FALSE, cache=FALSE>>=
+library(knitr)
+
+comma <- function (x, ...) {
+  format(x, ..., big.mark = ",", scientific = FALSE, trim = TRUE)
+}
+
+# To dynamically extract name of the current file, use code below
+nameoffile <- current_input() # get name of file
+nof2 <-  strsplit(nameoffile,"\\.")[[1]][1] # extract name, drop extension
+noftex <- paste(nof2, ".tex", sep="") # add .tex extension
+systemcall <- paste("system('texcount -inc -incbib -total -sum ", noftex, "', intern=TRUE)", sep="") # paste together texcount system command
+texcount.out <- eval(parse(text=systemcall)) # run texcount on current last compiled .tex file
+
+sum.row <- grep("Sum count", texcount.out, value=TRUE) # extract row
+pattern <- "(\\d)+" # regex pattern for digits
+
+count <- regmatches(sum.row, regexpr(pattern, sum.row) )
+# extract digits
+
+count <- comma(as.numeric(count)) # add comma
+@
+
+
+\begin{center}
+\vspace*{\stretch{1}}
+\dotfill
+\dotfill {\huge {\bf Word count}: \Sexpr{count}} \dotfill
+\dotfill
+\vspace*{\stretch{1}}
+\end{center}
+
+\clearpage
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% WORD COUNT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Online Appendix
+%\newpage
+%\section{Online Appendix}
+%\pagenumbering{Roman}
+%\setcounter{page}{1}
+
+
+
+%% reset tables and figures counter
+%\setcounter{table}{0}
+%\renewcommand{\thetable}{OA\arabic{table}}
+%\setcounter{figure}{0}
+%\renewcommand{\thefigure}{OA\arabic{figure}}
+
+
+% HERE
+% PUT TABLE HERE
+%% label should be tab:unit:root:tests
+
+
+%\section{Appendix}
+%\pagenumbering{roman}
+%\setcounter{page}{1}
+%\newpage
+
+
+
+% Menaldo's ToDo/Comments
+
+	% Theory
+
+		% to be more convincing you have to show why Levine's work that shows with persuasive causal identification that greater financial development reduces inequality is wrong theoretically and empirically. You should try to play devil's advocate against yourself.
+
+		% Netherlands, Sweden, Norway, Finland and Denmark? Among the most democratic and the have the highest state capacity. In Albertus and Menaldo 2018 they have a way to make sense of this pattern: these are all “popular” democracies that shed their autocratic legacies and empowered the median voter and are more pluralistic and inclusive in general. They therefore made it much less likely for crony capitalism to take hold-something that happens much more readily in elite biased democracies that inherit antidemocratic legacies from the previous regime.
+
+	% Empirics
+
+		% Check for for panel cointegration: https://faculty.washington.edu/vmenaldo/Articles%20in%20Journals/APSR%20Article.pdf
+
+		% To estimate long run effects in the ECM framework, you need to use the Delta Method for statistical inference because the equation to generate these effects is non-linear. Or you might try the Bewley transformation as an alternative. On the latter, refer to the following primer: http://lukekeele.com/wp-content/uploads/2016/03/AJPSR4.pdf
+
+		% About the standard errors in general: this is panel data, so you are going to want to address serial correlation, groupwise heteroscedasticity and spatial correlation. The ECM framework does not necessarily get at serial correlation and year fixed effects does not necessarily get at spatial correlation, which may be non-linear.
+
+		% Finally, democracy and state capacity are not randomly assigned. The country fixed effects are a good start, but you should consider controlling for country specific time trends and also estimating dynamic panel models using generalized method of moments (GMM), which allow you to use an internal matrix of instruments (lags in levels and/or differences). This article by Roodman is a good introduction, especially if you use Stata: https://journals.sagepub.com/doi/abs/10.1177/1536867X0900900106
+
+\end{document}
+
+
+
+
+
+

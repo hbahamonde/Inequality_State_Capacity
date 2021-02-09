@@ -1,0 +1,515 @@
+\RequirePackage{atbegshi}
+\documentclass[compress,aspectratio=169]{beamer} % aspectratio=169
+%\usepackage[svgnames]{xcolor}
+
+%	%	%	%	%	%	%	%	%	%	%	%	%	%	%
+% 						MY PACKAGES 
+%	%	%	%	%	%	%	%	%	%	%	%	%	%	%
+\usepackage{graphicx}				% Use pdf, png, jpg, or eps with pdflatex; use eps in DVI mode
+\usepackage{dcolumn} % this pack is neccesary to build nicer columns with texreg--dont remove it.
+\usepackage[export]{adjustbox}
+
+\usepackage{amssymb}
+\usepackage{amsmath}	
+%\usepackage{tipx}
+%\usepackage{tikz}
+%\usetikzlibrary{arrows,shapes,decorations.pathmorphing,backgrounds,positioning,fit,petri}
+\usepackage{rotating}
+%\usepackage{scalerel} % for inline images
+\usepackage{import}
+%\usepackage{times}
+\usepackage{array}
+\usepackage{tabularx}
+%\usepackage{booktabs}
+%\usepackage{textcomp}
+\usepackage{float}
+%\usepackage{setspace} 			% \doublespacing \singlespacing \onehalfspacing	%doble espacio
+%\label{x:y}													%ocupar para autoref.
+%\autoref{x:y}												%ocupar para autoref.
+%\usepackage{nopageno}			%desactivar para p�ginas
+\usepackage{pifont}
+%\usepackage{color,xcolor,ucs}
+%\usepackage{marvosym} %faces
+\usepackage{hyperref}
+\usepackage{multirow}
+
+
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{ %
+  language=R,                     % the language of the code
+  basicstyle=\TINY,           % the size of the fonts that are used for the code
+  numbers=left,                   % where to put the line-numbers
+  numberstyle=\tiny\color{gray},  % the style that is used for the line-numbers
+  stepnumber=1,                   % the step between two line-numbers. If it's 1, each line
+                                  % will be numbered
+  numbersep=5pt,                  % how far the line-numbers are from the code
+  backgroundcolor=\color{white},  % choose the background color. You must add \usepackage{color}
+  showspaces=false,               % show spaces adding particular underscores
+  showstringspaces=false,         % underline spaces within strings
+  showtabs=false,                 % show tabs within strings adding particular underscores
+  frame=single,                   % adds a frame around the code
+  rulecolor=\color{black},        % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. commens (green here))
+  tabsize=1,                      % sets default tabsize to 2 spaces
+  captionpos=b,                   % sets the caption-position to bottom
+  breaklines=true,                % sets automatic line breaking
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  title=\lstname,                 % show the filename of files included with \lstinputlisting;
+                                  % also try caption instead of title
+  keywordstyle=\color{blue},      % keyword style
+  commentstyle=\color{dkgreen},   % comment style
+  stringstyle=\color{mauve},      % string literal style
+  escapeinside={\%*}{*)},         % if you want to add a comment within your code
+  morekeywords={*,...}            % if you want to add more keywords to the set
+} 
+
+% % % % % % % % % % % % % % %
+%           PACKAGE CUSTOMIZATION
+% % % % % % % % % % % % % % %
+
+% GENERAL CUSTOMIZATION
+\usepackage[math]{iwona}% font
+\usetheme{Singapore}  % template I should use
+%\usetheme{Szeged}  % alternative template
+\usecolortheme{rose}  % color template
+\makeatletter     % to show subsection/section title (1/3)
+\beamer@theme@subsectiontrue % to show subsection/section title (2/3)
+\makeatother      % to show subsection/section title (3/3)
+
+
+
+% THIS BELOW IS TO MAKE NAVIGATION DOTS MARKED DURING PRESENTATION
+\makeatletter
+\def\slideentry#1#2#3#4#5#6{%
+  %section number, subsection number, slide number, first/last frame, page number, part number
+  \ifnum#6=\c@part\ifnum#2>0\ifnum#3>0%
+    \ifbeamer@compress%
+      \advance\beamer@xpos by1\relax%
+    \else%
+      \beamer@xpos=#3\relax%
+      \beamer@ypos=#2\relax%
+    \fi%
+  \hbox to 0pt{%
+    \beamer@tempdim=-\beamer@vboxoffset%
+    \advance\beamer@tempdim by-\beamer@boxsize%
+    \multiply\beamer@tempdim by\beamer@ypos%
+    \advance\beamer@tempdim by -.05cm%
+    \raise\beamer@tempdim\hbox{%
+      \beamer@tempdim=\beamer@boxsize%
+      \multiply\beamer@tempdim by\beamer@xpos%
+      \advance\beamer@tempdim by -\beamer@boxsize%
+      \advance\beamer@tempdim by 1pt%
+      \kern\beamer@tempdim
+      \global\beamer@section@min@dim\beamer@tempdim
+      \hbox{\beamer@link(#4){%
+          \usebeamerfont{mini frame}%
+          \ifnum\c@section>#1%
+            %\usebeamercolor[fg]{mini frame}%
+            %\usebeamertemplate{mini frame}%
+            \usebeamercolor{mini frame}%
+            \usebeamertemplate{mini frame in other subsection}%
+          \else%
+            \ifnum\c@section=#1%
+              \ifnum\c@subsection>#2%
+                \usebeamercolor[fg]{mini frame}%
+                \usebeamertemplate{mini frame}%
+              \else%
+                \ifnum\c@subsection=#2%
+                  \usebeamercolor[fg]{mini frame}%
+                  \ifnum\c@subsectionslide<#3%
+                    \usebeamertemplate{mini frame in current subsection}%
+                  \else%
+                    \usebeamertemplate{mini frame}%
+                  \fi%
+                \else%
+                  \usebeamercolor{mini frame}%
+                  \usebeamertemplate{mini frame in other subsection}%
+                \fi%
+              \fi%
+            \else%
+              \usebeamercolor{mini frame}%
+              \usebeamertemplate{mini frame in other subsection}%
+            \fi%
+          \fi%
+        }}}\hskip-10cm plus 1fil%
+  }\fi\fi%
+  \else%
+  \fakeslideentry{#1}{#2}{#3}{#4}{#5}{#6}%
+  \fi\ignorespaces
+  }
+\makeatother
+
+
+% % % % % % % % % % % % % % %
+%       To show the TITLE at the Bottom of each slide
+% % % % % % % % % % % % % % %
+
+\beamertemplatenavigationsymbolsempty 
+\makeatletter
+\setbeamertemplate{footline}
+{
+\leavevmode%
+\hbox{%
+\begin{beamercolorbox}[wd=1\paperwidth,ht=2.25ex,dp=2ex,center]{title in head/foot}%
+\usebeamerfont{title in head/foot}\insertshorttitle
+\end{beamercolorbox}%
+\begin{beamercolorbox}[wd=1
+\paperwidth,ht=2.25ex,dp=2ex,center]{date in head/foot}%
+\end{beamercolorbox}}%
+}
+\makeatother
+
+
+
+% to switch off navigation bullets
+%% using \miniframeson or \miniframesoff
+\makeatletter
+\let\beamer@writeslidentry@miniframeson=\beamer@writeslidentry
+\def\beamer@writeslidentry@miniframesoff{%
+  \expandafter\beamer@ifempty\expandafter{\beamer@framestartpage}{}% does not happen normally
+  {%else
+    % removed \addtocontents commands
+    \clearpage\beamer@notesactions%
+  }
+}
+\newcommand*{\miniframeson}{\let\beamer@writeslidentry=\beamer@writeslidentry@miniframeson}
+\newcommand*{\miniframesoff}{\let\beamer@writeslidentry=\beamer@writeslidentry@miniframesoff}
+\makeatother
+
+% Image full size: use 
+%%\begin{frame}
+  %%\fullsizegraphic{monogram.jpg}
+%%\end{frame}
+\newcommand<>{\fullsizegraphic}[1]{
+  \begin{textblock*}{0cm}(-1cm,-3.78cm)
+  \includegraphics[width=\paperwidth]{#1}
+  \end{textblock*}
+}
+
+
+% hyperlinks
+\hypersetup{colorlinks,
+            urlcolor=[rgb]{0.01, 0.28, 1.0},
+            linkcolor=[rgb]{0.01, 0.28, 1.0}}
+
+
+%	%	%	%	%	%	%	%	%	%	%	%	%	%	%
+% 					DOCUMENT ID
+%	%	%	%	%	%	%	%	%	%	%	%	%	%	%
+
+\title{\input{title.txt}\unskip}
+
+\author[shortname]{H\'ector Bahamonde \textsuperscript{1} \and Mart Trasberg \inst{2}}
+\institute[shortinst]{\textsuperscript{1} O$'$Higgins University \and \inst{2} Tulane University}
+\date{\today}
+
+%to to see shadows of previous blocks
+%\setbeamercovered{dynamic}
+
+
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% loading knitr package
+<<setup, include=FALSE>>=
+library(knitr)
+opts_chunk$set(fig.path='figure/beamer-',fig.align='center',fig.show='hold',size='footnotesize')
+
+@
+
+
+<<echo=FALSE, cache= F, warning = FALSE, message = F>>=
+read_chunk('../Inequality_State_Capacities/Bahamonde_Trasberg.R')
+
+@
+
+
+% loadings:data // loading data
+<<loadings:data, echo=FALSE, comment=NA, warning=FALSE, message=FALSE, include = FALSE, cache=FALSE, eval=TRUE>>=
+
+@
+
+
+% main:models // running the models, and storing them
+<<main:models, echo=FALSE, comment=NA, warning=FALSE, message=FALSE, include = FALSE, cache=FALSE, eval=TRUE>>=
+
+@
+
+
+% long:run:effect:d
+<<long:run:effect:d, echo=FALSE, comment=NA, warning=FALSE, message=FALSE, include = FALSE, cache=FALSE, eval=TRUE>>=
+
+@
+
+% long:run:effect:p1
+<<long:run:effect:p1, echo=FALSE, comment=NA, warning=FALSE, message=FALSE, include = FALSE, cache=FALSE, eval=TRUE>>=
+
+@
+
+<<interaction:model:1:plot:note, echo=FALSE, comment=NA, warning=FALSE, message=FALSE, include = FALSE, cache=FALSE, eval=TRUE>>=
+
+@
+
+
+<<interaction:model:15:plot:note, echo=FALSE, comment=NA, warning=FALSE, message=FALSE, include = FALSE, cache=FALSE, eval=TRUE>>=
+
+@
+
+
+
+% robustness:models // running the models, and storing them
+<<robustness:models, echo=FALSE, comment=NA, warning=FALSE, message=FALSE, include = FALSE, cache=FALSE, eval=TRUE>>=
+
+@
+
+% mechanisms:models // running the models, and storing them
+<<mechanisms:models, echo=FALSE, comment=NA, warning=FALSE, message=FALSE, include = FALSE, cache=FALSE, eval=TRUE>>=
+
+@
+
+
+% south:africa:plot:data
+<<south:africa:plot:data, echo=FALSE, comment=NA, warning=FALSE, message=FALSE, include = FALSE, cache=FALSE, eval=TRUE>>=
+
+@
+
+% end knitr stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+%	%	%	%	%	%	%	%	%	%	%	%	%	%	%
+% 					CONTENT
+%	%	%	%	%	%	%	%	%	%	%	%	%	%	%
+
+%% title frame
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\section{Motivation}
+\subsection{Motivation}
+
+\begin{frame}{Motivation}
+
+  \begin{itemize}
+    \item {\color{red}\bf Median voter} and {\color{red}\bf selectorate} theories conceptualize {\color{blue}\bf democracy} as \emph{{\color{blue}\bf redistributive}}.\;\pause {\color{red}\bf Is it?} \pause
+        \begin{itemize}
+            \item {\bf Poor accountability}, {\bf clientelism}, {\bf interest group capture} challenge {\bf\color{blue}\emph{democratic} redistribution} {\scriptsize (Albertus and Menaldo 2018)}.\pause
+            \item In fact, sometimes {\bf autocracies} redistribute more, when compared to {\bf democracies} {\scriptsize (Albertus 2015)}.\pause
+        \end{itemize}
+    \item {\bf What's the \emph{overtime} relationship between {\color{red}inequality}, {\color{red}state capacity} and {\color{red}democracy}?}\pause
+    \item[Argue] When democracy and state institutions are strong, investment climate should be better, fostering inequality via FDIs.
+  \end{itemize}
+\end{frame}
+
+
+\section{Argument}
+
+\subsection{Theory}
+
+\begin{frame}%{Theory}
+
+
+\begin{exampleblock}{Democracy}
+{\bf protects private property rights} from arbitrary government extraction ({\bf benefiting mostly economic elites}). 
+\end{exampleblock}
+
+\pause
+
+\begin{exampleblock}{High State Capacity}
+fosters a {\bf market economy} via {\bf legal institutions}, enhancing private contracting among economic elites.
+\end{exampleblock}
+
+\end{frame}
+
+
+\subsection{Mechanism}
+
+\begin{frame}%{Connecting Democracy and High State Capacity, with Inequality}
+
+  \begin{itemize}
+    \item[{\tiny Argument}] {\color{red}Inequality increases where {\color{blue}{\bf democracy}} and {\color{blue}{\bf state capacity}} are \underline{high}}.\pause
+    \item Both factors should \emph{decrease} {\bf investment risks} by {\bf securing property rights} and by {\bf enforcing contract security}, fostering a {\bf {\color{blue}good investment climate}}.\pause
+  \end{itemize}
+
+\underline{These factors should translate into}:
+
+    \begin{itemize}
+      \item {\color{red}{\bf Higher FDIs}}:\pause
+        \begin{enumerate}
+        \item {\bf rise the demand for skilled workers}, increasing the wage gap between skilled and unskilled workers (increasing labor income inequality).\pause
+        \item {\bf turn domestic elites into more relevant political and economic actors}.
+      \end{enumerate}
+    \end{itemize}
+\end{frame}
+
+
+%\subsection{Theoretical Implications}
+%
+%\begin{frame}{If State Capacity is Low...}
+%
+%\underline{If State Capacity is Low, then}: 
+%
+%  \begin{enumerate}
+%      \item {\color{red}Democracy} \emph{won$'$t} {\color{red}redistribute} because of its {\bf inability to collect taxes and implement {\color{red}social policies}}.\pause
+%    \item {\bf Elites \emph{will} {\color{red}escape taxation}}, lowering state revenue.\pause
+%    \item The state \emph{won$'$t} provide {\bf market-enhancing public goods}, {\color{red} \bf lowering investor confidence}.
+%  \end{enumerate}
+% \end{frame}
+
+
+\subsection{In Sum}
+
+\miniframesoff
+\begin{frame}[c]{{\color{white}XYZ}}
+  %\begin{center}
+  {\huge When {\color{red}\bf property rights} are protected and when {\color{red}\bf state institutions} provide good-enough legal systems throughout the territory, investment climate should be better, fostering {\color{red}\bf inequality} via FDIs.}
+%\end{center}
+\end{frame}
+
+
+\section{Econometrics}
+
+
+\subsection{Data}
+
+\miniframeson
+\begin{frame}{Main Variables}
+
+  \begin{enumerate}
+    \item[Y] {\bf Inequality}: (post-tax) Gini.\pause% {\scriptsize Measures of market inequality and redistribution do not exist for most of the developing world.}\pause
+    \item[$X_{1}$] {\bf Democracy}: Polity.\pause
+    \item[$X_{2}$] {\bf State Capacity}: the ``infrastructural power of the state'' to penetrate its territory (Mann), by observing whether the state is able to conduct regular censuses.
+  \end{enumerate}
+\end{frame}
+
+
+\subsection{Model}
+
+\begin{frame}{Interactive Hypothesis Testing: ECM Framework}
+  
+  \begin{itemize}
+    \item We're interested in the \emph{combined} effects of a state being {\bf democratic} \emph{and} with {\bf high capacity}.\pause
+    \item Hence, we should use an {\bf interaction term} ($\rho$). \pause More formally, we estimate:
+  \end{itemize}
+
+  {\input{model.txt}\unskip}
+  \\
+  {\tiny where $\gamma_{i}$ and $\lambda_{t}$ are the country and year fixed effects, respectively, $\mu_{i, t}$ the estimated residuals, and \emph{Control Variables} a matrix of length $n_{i, t}$ relevant control variables.}
+
+\end{frame}
+
+
+%\miniframesoff
+%\begin{frame}{ECM and Long-term Equilibrium}
+%  \begin{itemize}
+%    \item $\beta_{2}$: \emph{short}-term effects. 
+%    \item $\rho$ and $\beta_{1}$ are used to account for \emph{long}-term effects, or the ``error correction component'' {\tiny (Morgan and Kelly 2013)}. 
+%    \item The magnitude of this effect is determined by $\frac{\rho}{\beta_{1}}$ {\tiny (De Boef et al 2008)}. 
+%  \end{itemize}
+% \end{frame}
+
+
+\subsection{Results}
+
+\miniframeson
+\begin{frame}[plain,fragile]
+\vspace{-7cm}
+<<main:models:table, echo = FALSE, warning = FALSE, message = F, cache = FALSE, results='asis'>>=
+
+@
+\end{frame}
+
+\miniframesoff
+\begin{frame}[plain,fragile]%{Interpreting Interaction Effects}
+
+Neither constitutive terms nor interaction terms are directly interpretable {\scriptsize(Brambor et al 2006)}. We calculate {\bf the {\color{red}conditional effect} of state capacity \emph{and} democracy on inequality}.\pause
+
+<<interaction:model:1:plot, echo = FALSE, fig.pos='h', warning = FALSE, message = F, fig.align='center', fig.width=8, fig.height=4,dpi=10000,cache = FALSE>>=
+
+@
+\end{frame}
+
+
+\miniframesoff
+\begin{frame}[fragile]{Computing Long-Run Effects}
+  \begin{itemize}
+    \item We also compute the {\bf long}-{\bf run} {\bf effect} \;=\; LRM$\times$ECR \;=\; $\Sexpr{lrm*ecr}$ {\scriptsize (DeBoef et al., 2008)}.
+    \item Substantively, inequality increases \emph{immediately} in $t+1 \;=\; \Sexpr{long.run.effect.d$Inequality[long.run.effect.d$Periods=='t+1']}$, and continues  increasing $\Sexpr{long.run.effect.d$Inequality[long.run.effect.d$Periods=='t+2']}$ the next period.
+    \item  The LRM ($\frac{\rho}{\beta_{1}}$ = $\frac{\Sexpr{round(summary(model.1)$coefficients["lag.polity:lag.cum.census",1],5)}}{\Sexpr{round(summary(model.1)$coefficients["lag.gini_disp.mean",1],5)}}$ = $\Sexpr{round(summary(model.1)$coefficients["lag.polity:lag.cum.census",1]/summary(model.1)$coefficients["lag.gini_disp.mean",1],4)}$) {\scriptsize ``is the cumulative effect of a covariate on the outcome'' (Keele et al 2016) that ``spread[s] over future time periods'' (Haber et al, 2011)}. 
+    \item  The ECR ($\rho \;=\; \Sexpr{round(summary(model.1)$coefficients["lag.gini_disp.mean",1],5)}$) {\scriptsize is the ``speed of adjustment'' (Keele et al, 2016) or the ``short-run effects'' (DeBoef et al 2008)}.
+  \end{itemize}
+\end{frame}
+
+
+
+\miniframesoff
+\begin{frame}[plain, fragile]{Computing Long-Run Effects}
+<<long:run:effect:p2, echo = FALSE, fig.pos='h', warning = FALSE, message = F, fig.align='center', fig.width=7, fig.height=4,dpi=10000,cache = FALSE>>=
+
+@
+\end{frame}
+
+
+
+
+
+\miniframeson
+\section{Conclusions}
+\subsection{Conclusions}
+
+\begin{frame}{Conclusions}
+  \begin{itemize}
+    \item {\bf Democracy} {\bf {\color{blue}protects private property rights}} from arbitrary government extraction.
+    \item {\bf High state capacity} offers {\bf {\color{blue}stronger protection of the rule of law}}.\pause
+  \end{itemize}
+
+\underline{In turn, these elements}:
+
+\begin{enumerate}
+    \item Foster market institutions.
+    \item Enhance private contracting.\pause
+    \item[$\star$] All these elements create favorable market conditions that attract {\bf FDIs}:\pause
+      \begin{itemize}
+        \item attracting multinational corporations.\pause
+        \item making economic elites (\emph{even}) more politically influent:\pause\;{\bf pressures to liberalize labor protection policies}.\pause
+      \end{itemize}
+\end{enumerate}
+
+{\bf \color{red} This is why we believe that \underline{democracy} and \underline{state capacity} increase \underline{inequality} overtime}.
+
+\end{frame}
+
+
+\miniframesoff
+\begin{frame}[plain,c, label=thank_you]
+\begin{center}
+\Huge{Thank you!}\\
+\vspace{1cm} {\bf More info}: \texttt{www.Hector{\color{black!30!green}{\bf Bahamonde}}.com}
+\end{center}
+\end{frame}
+
+
+
+
+
+\end{document}
+
+
+\miniframesoff
+\begin{frame}[plain, fragile]
+\vspace{-6cm}
+<<mechanisms:models:table, echo = FALSE, warning = FALSE, message = F, cache = FALSE, results='asis'>>=
+
+@
+\end{frame}
